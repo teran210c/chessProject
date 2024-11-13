@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChessProject</title>
+ <!-- CSS de Chessboard.js -->
+ <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+
+ <!-- Incluir jQuery antes de Chessboard.js -->
+ <script src="jquery-3.7.1.min.js"></script>
+
+
+ <!-- Incluir Chessboard.js después de jQuery -->
+ <script src="js/chessboard-1.0.0.min.js"></script>
 </head>
 <body>
-    
-</body>
+  <div id="board1" style="width: 400px"></div>
+  </body>
+
+  
+  
+<!--
+  Now including our own custom JS
+  Note that we could write JS directly in between the script tags if you'd 
+  rather, but i didn't want to so i put it in a new file. 
+-->
+  <script src="./script.js"></script>
 </html>
