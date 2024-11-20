@@ -1,8 +1,14 @@
-var board = ChessBoard('#board1', {
-  draggable: true,  // Habilitar piezas arrastrables
-  dropOffBoard: 'trash',  // Las piezas fuera del tablero irán a la "basura"
-  sparePieces: true  // Mostrar piezas de repuesto
+var board1 = Chessboard("board1", {
+  position: "start",
+  showNotation: false,
 });
 
-// Iniciar el tablero con las piezas en su posición inicial
-board.position('start');
+var board2 = Chessboard("board2", {
+  position: "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R",
+  showNotation: false,
+});
+
+var board3 = Chessboard("board3", {
+  position: "r1k4r/p2nb1p1/2b4p/1p1n1p2/2PP4/3Q1NB1/1P3PPP/R5K1",
+  showNotation: false,
+});

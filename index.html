@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
- <!-- CSS de Chessboard.js -->
- <link rel="stylesheet" href="css/chessboard-1.0.0.min.css">
+  <head>
+    <!-- CSS de Chessboard.js -->
+    <link rel="stylesheet" href="css/chessboard-1.0.0.min.css" />
 
- <!-- Incluir jQuery antes de Chessboard.js -->
- <script src="jquery-3.7.1.min.js"></script>
+    <!-- Incluir jQuery antes de Chessboard.js -->
+    <script src="jquery-3.7.1.min.js"></script>
 
-
- <!-- Incluir Chessboard.js después de jQuery -->
- <script src="js/chessboard-1.0.0.min.js"></script>
-</head>
-<body>
-  <div id="board1" style="width: 400px"></div>
+    <!-- Incluir Chessboard.js después de jQuery -->
+    <script src="js/chessboard-1.0.0.min.js"></script>
+  </head>
+  <body>
+    <div class="board-container">
+      <div id="board1"></div>
+    </div>
+    <div id="board2"></div>
+    <div id="board3"></div>
   </body>
 
-  
-  
-<!--
+  <!--
   Now including our own custom JS
   Note that we could write JS directly in between the script tags if you'd 
   rather, but i didn't want to so i put it in a new file. 
