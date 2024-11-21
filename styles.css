@@ -1,10 +1,10 @@
 #ejercicio {
   display: flex;
-  height: 300px;
+  height: 500px;
   justify-content: center;
   align-items: center;
 }
 
 .small-board {
-    width: 10px;
+    width: 300px;
 }
