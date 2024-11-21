@@ -12,10 +12,21 @@ function onDragStart (source, piece, position, orientation) {
   if (game.game_over()) return false
 
   // only pick up pieces for the side to move
-  if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-      (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+  if ((game.turn() === 'w' && piece.search(/^b/) !== -1) /*||
+      (game.turn() === 'b' && piece.search(/^w/) !== -1)*/) {
     return false
   }
+}
+
+function makeRandomMove () {
+  var possibleMoves = game.moves()
+
+  // game over
+  if (possibleMoves.length === 0) return
+
+  var randomIdx = Math.floor(Math.random() * possibleMoves.length)
+  game.move(possibleMoves[randomIdx])
+  board.position(game.fen())
 }
 
 function onDrop (source, target) {
@@ -29,7 +40,8 @@ function onDrop (source, target) {
   // illegal move
   if (move === null) return 'snapback'
 
-  updateStatus()
+  // make random legal move for black
+  window.setTimeout(makeRandomMove, 250)
 }
 
 // update the board position after the piece snap
@@ -80,7 +92,7 @@ var config = {
 }
 board = Chessboard('board1', config)
 
-updateStatus()
+// updateStatus()
 
 $('#setRuyLopezBtn').on('click', function () {
   var ruyLopez = 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R'

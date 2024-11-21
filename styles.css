@@ -6,11 +6,5 @@
 }
 
 .small-board {
-    /* display: flex; */
-    width: 250px
-    /* align-content: flex-end; */
-  }
-
-  /* #setRuyLopezBtn {
-    min-width: 5px;
-  } */
+    width: 10px;
+}
