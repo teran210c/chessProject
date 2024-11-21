@@ -3,10 +3,35 @@
 
 var board = null
 var game = new Chess()
+var stockfish = new Worker("./stockfish-16.1.js");
 var $status = $('#status')
 var $fen = $('#fen')
 var $pgn = $('#pgn')
 
+// Recibir movimientos de Stockfish
+stockfish.onmessage = function (event) {
+  console.log("Stockfish:", event.data);
+
+  var bestMove = event.data.match(/bestmove\s(\w{4})/);
+  if (bestMove) {
+    game.move({
+      from: bestMove[1].substring(0, 2),
+      to: bestMove[1].substring(2, 4),
+      promotion: 'q'
+    });
+    board.position(game.fen());
+    updateStatus();
+  }
+};
+
+function onDragStart(source, piece) {
+  if (game.game_over()) return false;
+
+  if ((game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+      (game.turn() === 'b' && piece.search(/^w/) !== -1)) {
+    return false;
+  }
+}
 function onDragStart (source, piece, position, orientation) {
   // do not pick up pieces if the game is over
   if (game.game_over()) return false
@@ -30,6 +55,9 @@ function onDrop (source, target) {
   if (move === null) return 'snapback'
 
   updateStatus()
+
+  stockfish.postMessage('position fen ' + game.fen()); 
+  stockfish.postMessage('go depth 15');
 }
 
 // update the board position after the piece snap
@@ -86,6 +114,6 @@ $('#setRuyLopezBtn').on('click', function () {
   var ruyLopez = 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R'
   board.position(ruyLopez, false)
   game.load('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1')
+  updateStatus()
 })
 
-updateStatus()
