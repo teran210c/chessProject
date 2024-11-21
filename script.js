@@ -1,3 +1,12 @@
+// NOTE: this example uses the chess.js library:
+// https://github.com/jhlywa/chess.js
+
+var board = null
+var game = new Chess()
+var $status = $('#status')
+var $fen = $('#fen')
+var $pgn = $('#pgn')
+
 function onDragStart (source, piece, position, orientation) {
   // do not pick up pieces if the game is over
   if (game.game_over()) return false
@@ -62,12 +71,6 @@ function updateStatus () {
   $pgn.html(game.pgn())
 }
 
-var board = null
-var game = new Chess()
-var $status = $('#status')
-var $fen = $('#fen')
-var $pgn = $('#pgn')
-
 var config = {
   draggable: true,
   position: 'start',
@@ -77,21 +80,12 @@ var config = {
 }
 board = Chessboard('board1', config)
 
-// updateStatus()
-
-var board2 = Chessboard("board2", {
-  position: "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R - 0 1",
-  showNotation: false,
-  draggable: true,
-  onDragStart: onDragStart,
-  onDrop: onDrop,
-  onSnapEnd: onSnapEnd
-});
-
 updateStatus()
 
-var board3 = Chessboard("board3", {
-  position: "r1k4r/p2nb1p1/2b4p/1p1n1p2/2PP4/3Q1NB1/1P3PPP/R5K1",
-  showNotation: false,
-  draggable: true
-});
+$('#setRuyLopezBtn').on('click', function () {
+  var ruyLopez = 'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R'
+  board.position(ruyLopez, false)
+  game.load('r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R w KQkq - 0 1')
+})
+
+updateStatus()
