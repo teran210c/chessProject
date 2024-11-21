@@ -1,4 +1,10 @@
+#ejercicio {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
 .small-board {
-    width: 800px;
-    margin: 80px 80px 80px 80px;
+    width: 250px
   }
